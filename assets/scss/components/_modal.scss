@@ -1,0 +1,131 @@
+@use '../base/mixin' as *;
+@use '../base/variables' as *;
+
+body.modal-open {
+  overflow: hidden;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  display: none;
+  &.is-open {
+    display: block;
+  }
+  &__dim {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    @include tablet {
+      display: none;
+    }
+  }
+  &__content {
+    @include flex-col;
+    gap: 20px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 560px;
+    max-height: 756px;
+    padding: 40px 0;
+    background-color: $white;
+    border-radius: 12px;
+    overflow: hidden;
+    @include tablet {
+      gap: 0;
+      max-width: 100%;
+      max-height: 100%;
+      min-height: 100%;
+      padding: 0;
+      border-radius: 0;
+    }
+  }
+  &__header {
+    position: relative;
+    @include flex(center, space-between);
+    padding-bottom: 20px;
+    margin: 0 40px;
+    border-bottom: 1px solid $gray-20;
+    @include tablet {
+      justify-content: center;
+      flex-shrink: 0;
+      height: 62px;
+      padding: 0;
+      margin: 0;      
+    }
+  }
+  &__title {
+    text-align: center;
+    color: $gray-90;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 26px;
+    @include tablet {
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 28px;
+    }
+  }
+  &__desc {
+    display: inline-block;
+    padding-left: 4px;
+    color: $gray-90;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 26px;
+    @include tablet {
+      display: block;
+      padding-left: 0;
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 100%;
+    }
+  }
+  &__close {
+    @include tablet {
+      position: absolute;
+      right: 24px;
+      z-index: 1;
+    }
+  }
+  &__body {
+    @include flex-col;
+    gap: 16px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: 630px;
+    padding: 0 40px;
+    @include tablet {
+      padding: 24px 16px;
+      max-height: 100%;
+      flex: 1;
+    }
+  }
+  .content {
+    & + .content {
+      margin-top: 24px;
+    }
+  }
+  &__footer {
+    display: flex;
+    gap: 10px;
+    padding: 0 40px;
+    @include tablet {
+      gap: 8px;
+      padding: 8px 16px;
+    }
+    .btn {
+      flex: 1;
+    }
+  }
+}
