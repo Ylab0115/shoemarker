@@ -17028,7 +17028,10 @@ input[type=radio] {
   justify-content: space-between;
   padding: 10px 20px;
   border-radius: 6px;
-  background: #F8F8F8;
+  background: #e0e0e0;
+}
+.order-group__divider {
+  border-top: 1px dashed #ccc;
 }
 @media (max-width: 1024px) {
   .order-group__head {
@@ -17658,7 +17661,7 @@ input[type=radio] {
 }
 .payment__value--minus .payment__value-num,
 .payment__value--minus .payment__value-unit {
-  color: #FE4C58;
+  /*color: #FE4C58;*/
   font-weight: 600;
 }
 .payment__value-num {
@@ -18366,14 +18369,17 @@ input[type=radio] {
 }
 .order-block__search {
   display: flex;
-  gap: 0 4px;
+  gap: 4px;
 }
 .order-block__search .form__field {
   flex:1;
 }
-@media (max-width: 1024px) {
+@media (max-width: 640px) {
   .order-block__search {
-    
+    flex-direction: column;
+  }
+  .order-block__search button {
+    width: 100%;
   }
 }
 
@@ -19436,6 +19442,13 @@ input[type=radio] {
     line-height: 16px;
     letter-spacing: 0;
   }
+}
+.delivery-address .delivery-list__btns {
+  display: flex;
+  gap: 4px;
+}
+.delivery-address .delivery-list__btns button {
+  flex:1;
 }
 .delivery-address .delivery-list__label {
   flex-shrink: 0;

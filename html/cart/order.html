@@ -51,7 +51,7 @@
                   </div>
                   -->
                 </div>
-                <button type="button" class="btn btn--md btn--line btn--secondary js-modal-open" data-target="#modal1">설정</button>
+                <!-- 2026-07-10 삭제 <button type="button" class="btn btn--md btn--line btn--secondary js-modal-open" data-target="#modal1">설정</button> -->
               </div>
               <div class="order-block__content">
                 <div class="order-block__inner">                  
@@ -61,7 +61,7 @@
                     <div class="form__field">
                       <input type="text" id="input1" class="form__input" value="" placeholder="배송지를 입력해 주세요.">
                     </div>
-                    <button type="button" class="btn btn--primary btn--lg">배송지 입력 및 설정 하기</button>
+                    <button type="button" class="btn btn--primary btn--lg js-modal-open" data-target="#modal1">배송지 입력 및 설정 하기</button>
                   </div>
                   
                   <!-- 배송지 설정 상태 
@@ -196,10 +196,6 @@
                       <!-- E : 상품 1 -->
                       <!-- S : 상품 2 -->
                       <div class="order-group">
-                        <div class="order-group__head">
-                          <!-- <span class="order-group__status">벤더명</span> -->
-                          <button type="button" class="order-group__action js-modal-open" data-target="#modal6">쿠폰선택</button>
-                        </div>
                         <div class="order-group__body">
                           <div class="order-group__content">
                             <!-- [s] item -->
@@ -943,7 +939,10 @@
                   </li>
                 </ul>
               </div>
-              <button type="button" class="btn btn--md btn--block btn--line btn--secondary">기본배송지로 설정</button>
+              <div class="delivery-list__btns">
+                <button type="button" class="btn btn--md btn--line btn--secondary">기본배송지로 설정</button>
+                <button type="button" class="btn btn--md btn--primary">여기로 배송</button>
+              </div>
             </li>
           </ul>
           
