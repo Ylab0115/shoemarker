@@ -12758,9 +12758,9 @@ body.is-locked {
 }
 .mobile-gnb__depth3 > li > a {
   display: block;
-  color: #2D2D2D;
+  color: #8E8E8E;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 20px;
 }
 .mobile-gnb__brand {
@@ -13173,14 +13173,26 @@ body.sheet-open {
 .chip__icon--free-shipping {
   background: url("../images/icon_free_shipping.svg") no-repeat;
 }
+.chip__icon--free-shipping-b {
+  background: url("../images/icon_free_shipping_b.svg") no-repeat;
+}
 .chip__icon--plus {
   background: url("../images/icon_plus_one.svg") no-repeat;
 }
+.chip__icon--pickup {
+  background: url("../images/icon_store_pickup.svg") no-repeat;
+}
+.chip__icon--giftcard {
+  background: url("../images/icon_giftcard.svg") no-repeat;
+}
 .chip__icon--installment {
-  background: url("../images/icon_card.svg") no-repeat;
+  background: url("../images/icon_installment.svg") no-repeat;
 }
 .chip__icon--coupon {
   background: url("../images/icon_coupon.svg") no-repeat;
+}
+.chip__icon--coupon-excluded {
+  background: url("../images/icon_coupon_excluded.svg") no-repeat;
 }
 .chip__text {
   color: #2D2D2D;
@@ -16067,7 +16079,8 @@ input[type=radio] {
   background-size: cover;
 }
 .main .hero-swiper__slide.swiper-slide-active .hero-swiper__title,
-.main .hero-swiper__slide.swiper-slide-active .hero-swiper__desc {
+.main .hero-swiper__slide.swiper-slide-active .hero-swiper__desc,
+.main .hero-swiper__slide.swiper-slide-active .hero-swiper__controls {
   opacity: 1;
   transform: translateY(0);
 }
@@ -16097,6 +16110,10 @@ input[type=radio] {
   z-index: 1;
 }
 .main .hero-swiper__title {
+  color: #fff;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 120%;
   max-width: 297px;
   opacity: 0;
   transform: translateY(20px);
@@ -16112,26 +16129,49 @@ input[type=radio] {
   transition: transform 0.5s ease-in-out 0.3s, opacity 0.7s ease 0.3s;
 }
 .main .hero-swiper__actions {
-  display: flex;
+  /* display: flex;
   align-items: center;
   gap: 8px;
   position: absolute;
   left: 24px;
   top: 66%;
   transform: translateY(-66%);
-  z-index: 1;
+  z-index: 1; */
+
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.main .hero-swiper__controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: transform 0.5s ease-in-out 0.3s, opacity 0.7s ease 0.5s;
 }
 .main .hero-swiper__fraction {
+  display: flex;
+  align-items: center;
+  gap: 4px;
   color: #FFFFFF !important;
   font-family: "WorkSans", sans-serif;
   font-size: 14px;
   line-height: 120%;
 }
-.main .hero-swiper__fraction .swiper-pagination-current {
+.main .hero-swiper__fraction .swiper-pagination-current,
+.main .hero-swiper__fraction .current {
   font-weight: 600;
   opacity: 1;
 }
-.main .hero-swiper__fraction .swiper-pagination-total {
+.main .hero-swiper__fraction .swiper-pagination-total,
+.main .hero-swiper__fraction .total {
   opacity: 0.7;
 }
 .main .hero-swiper__fraction-sep {
@@ -17192,7 +17232,7 @@ input[type=radio] {
   width: 128px;
   height: 128px;
   aspect-ratio: 1/1;
-  border-radius: 8px;
+  border-radius: 4px;
 }
 @media (max-width: 1024px) {
   .order-item__thumb {
@@ -17661,7 +17701,7 @@ input[type=radio] {
 }
 .payment__value--minus .payment__value-num,
 .payment__value--minus .payment__value-unit {
-  /*color: #FE4C58;*/
+  color: #FE4C58;
   font-weight: 600;
 }
 .payment__value-num {
@@ -17724,7 +17764,7 @@ input[type=radio] {
 .mypage .profile__name {
   color: #2D2D2D;
   font-size: 24px;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 140%;
   letter-spacing: -1px;
 }
@@ -19815,12 +19855,13 @@ input[type=radio] {
   }
 }
 .prod-edit-list__btns .btn--md {
-  width: 75px;
+  /*width: 75px;*/
   border-radius: 2px;
   font-size: 13px;
   font-weight: 400;
   line-height: 140%;
   letter-spacing: -0.13px;
+  white-space: nowrap;
 }
 .prod-edit-list__remove {
   width: 16px;
@@ -21692,6 +21733,9 @@ input[type=radio] {
   width: 100%;
   height: 100%;
   border: 1px solid #FFFFFF;
+}
+.product-detail .prod-summary .prod-visual .swiper-slide-thumb-active .thumb-swiper__btn::after {
+  border-color: #2D2D2D;
 }
 .product-detail .prod-summary .prod-visual .thumb-swiper__btn img {
   display: block;

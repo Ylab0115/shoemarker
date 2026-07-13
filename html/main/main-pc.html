@@ -24,13 +24,13 @@
         <h2 class="blind">메인 배너</h2>
         <div class="hero-swiper swiper js-hero-swiper">
           <div class="swiper-wrapper">
-            <div class="swiper-slide hero-swiper__slide swiper-slide-active">
+            <div class="swiper-slide hero-swiper__slide">
               <a href="#" class="hero-swiper__link">
                 <div class="hero-swiper__img-box">
                   <img src="../../assets/images/main/img_main_01_pc.jpg" alt="">
                 </div>
-                <div class="hero-swiper__txt-box">                  
-                  <img class="hero-swiper__title" src="../../assets/images/main/img_main_text_01_pc.png" alt="">
+                <div class="hero-swiper__txt-box">
+                  <strong class="hero-swiper__title">NIKE OF<br> AIR MAX 95</strong>
                   <span class="hero-swiper__desc">대한민국 축구 스타일 본능을 깨울 시간</span>
                 </div>
               </a>
@@ -41,14 +41,16 @@
                   <img src="../../assets/images/main/img_main_02_pc.jpg" alt="">
                 </div>
                 <div class="hero-swiper__txt-box">
-                  <strong class="hero-swiper__title">ABZORB 1890 <br>U189071H</strong>
-                  <!-- <img class="hero-swiper__title" src="../../assets/images/main/img_main_text_01.png" alt=""> -->
+                  <strong class="hero-swiper__title">ABZORB 1890<br> U189071H</strong>
                   <span class="hero-swiper__desc">RUTHLESS PURSUIT OF EVERYTHING</span>
                 </div>
               </a>
             </div>
           </div>
-          <div class="hero-swiper__pagination"></div>
+          <!-- 인디케이터 -->
+          <button class="hero-swiper__prev" type="button">이전</button>
+          <!-- div class="hero-swiper__pagination"></div -->
+          <button class="hero-swiper__next" type="button">다음</button>
         </div>
       </section>
 
@@ -1666,6 +1668,16 @@
 
       window.addEventListener('load', function () {
         // 메인 슬라이드
+        // 텍스트 영역에 좌우버튼 및 페이징 영역 만들기
+        $('.hero-swiper__slide').each(function () {
+          $(this).find('.hero-swiper__desc').after(`
+            <div class="hero-swiper__controls">
+              <div class="hero-swiper__fraction"></div>
+              <span class="hero-swiper__more" aria-label="더보기"></span>
+            </div>
+          `);
+        });
+        // 스와이프 작동하기
         const mainSwiper = new Swiper('.js-hero-swiper', {
           loop: true,
           spaceBetween: 0,
@@ -1674,10 +1686,29 @@
             delay: 7000,
             disableOnInteraction: false,
           },
-          pagination: {
-            el: ".hero-swiper__pagination",
+          //pagination: {
+          //  el: ".hero-swiper__pagination",
+          //  type: "fraction",
+          //},
+          navigation: {
+            nextEl: ".hero-swiper__next",
+            prevEl: ".hero-swiper__prev",
+          },
+          on: {
+            init: function () {
+              updatePagination(this);
+            },
+            slideChange: function () {
+              updatePagination(this);
+            }
           },
         });
+        // 카운트 반영하기
+        function updatePagination(swiper) {
+          const current = String(swiper.realIndex + 1).padStart(2, '0');
+          const total = String(swiper.slides.length).padStart(2, '0');
+          $('.hero-swiper__controls .hero-swiper__fraction').html(`<span class="current">${current}</span><span class="total">/ ${total}</span>`);
+        }
 
         // best hot 슬라이드
         const bestHotEl = document.querySelector('.best-hot');

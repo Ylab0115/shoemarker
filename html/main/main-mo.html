@@ -30,7 +30,7 @@
                   <img src="../../assets/images/main/img_main_01_mo.jpg" alt="">
                 </div>
                 <div class="hero-swiper__txt-box">
-                  <img class="hero-swiper__title" src="../../assets/images/main/img_main_text_01_mo.png" alt="">
+                  <strong class="hero-swiper__title">NIKE OF<br> AIR MAX 95</strong>
                   <span class="hero-swiper__desc">대한민국 축구 스타일 본능을 깨울 시간</span>
                 </div>
               </a>
@@ -41,7 +41,7 @@
                   <img src="../../assets/images/main/img_main_02_mo.jpg" alt="">
                 </div>
                 <div class="hero-swiper__txt-box">
-                  <img class="hero-swiper__title" src="../../assets/images/main/img_main_text_02_mo.png" alt="">
+                  <strong class="hero-swiper__title">ABZORB 1890<br> U189071H</strong>
                   <span class="hero-swiper__desc">모든 일상에서 스피드를 느끼다</span>
                 </div>
               </a>
@@ -1197,6 +1197,16 @@
 
       window.addEventListener('load', function () {
         // 메인 슬라이드
+        // 텍스트 영역에 좌우버튼 및 페이징 영역 만들기
+        $('.hero-swiper__slide').each(function () {
+          $(this).find('.hero-swiper__desc').after(`
+            <div class="hero-swiper__controls">
+              <div class="hero-swiper__fraction"></div>
+              <span class="hero-swiper__more" aria-label="더보기"></span>
+            </div>
+          `);
+        });
+        // 스와이프 작동하기
         const thumbSwiper = new Swiper('.js-hero-swiper', {
           loop: true,
           spaceBetween: 0,
@@ -1205,20 +1215,34 @@
             delay: 4000,
             disableOnInteraction: false,
           },
-          pagination: {
-            el: '.hero-swiper__fraction',
-            type: 'fraction',
-            formatFractionCurrent: (number) => String(number).padStart(2, '0'),
-            formatFractionTotal:   (number) => String(number).padStart(2, '0'),
-            renderFraction: function (currentClass, totalClass) {
-              return `
-                <span class="${currentClass}"></span>
-                <span class="hero-swiper__fraction-sep">/</span>
-                <span class="${totalClass}"></span>
-              `;
+          //pagination: {
+          //  el: '.hero-swiper__fraction',
+          //  type: 'fraction',
+          //  formatFractionCurrent: (number) => String(number).padStart(2, '0'),
+          //  formatFractionTotal:   (number) => String(number).padStart(2, '0'),
+          //  renderFraction: function (currentClass, totalClass) {
+          //    return `
+          //      <span class="${currentClass}"></span>
+          //     <span class="hero-swiper__fraction-sep">/</span>
+          //      <span class="${totalClass}"></span>
+          //    `;
+          //  },
+          //},
+          on: {
+            init: function () {
+              updatePagination(this);
             },
+            slideChange: function () {
+              updatePagination(this);
+            }
           },
         });
+        // 카운트 반영하기
+        function updatePagination(swiper) {
+          const current = String(swiper.realIndex + 1).padStart(2, '0');
+          const total = String(swiper.slides.length).padStart(2, '0');
+          $('.hero-swiper__controls .hero-swiper__fraction').html(`<span class="current">${current}</span><span class="total">/ ${total}</span>`);
+        }
 
         // 상품 슬라이드
         const swiperEls = document.querySelectorAll('.js-product-swiper');
