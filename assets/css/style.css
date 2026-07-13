@@ -17762,9 +17762,9 @@ input[type=radio] {
   background: url("../images/icon_grade_r.svg") no-repeat;
 }
 .mypage .profile__name {
-  color: #2D2D2D;
+  color: #333333;
   font-size: 24px;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 140%;
   letter-spacing: -1px;
 }
