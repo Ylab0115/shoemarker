@@ -26584,6 +26584,12 @@ input[type=radio] {
 }
 @media (max-width: 1024px) {
   .launch .launch-content__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 40px 24px;
+  }
+}
+@media (max-width: 640px) {
+  .launch .launch-content__list {
     display: flex;
     flex-direction: column;
     gap: 24px;
@@ -26633,11 +26639,11 @@ input[type=radio] {
 .launch .launch-content .launch-card__thumb {
   overflow: hidden;
   width: 100%;
-  aspect-ratio: 400/536;
+  aspect-ratio: 780/472;
 }
 @media (max-width: 1024px) {
   .launch .launch-content .launch-card__thumb {
-    aspect-ratio: 342/208;
+    /*aspect-ratio: 342/208;*/
     border-radius: 6px;
   }
 }
