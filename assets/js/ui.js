@@ -280,6 +280,7 @@ let UI = {
   tabBar: function () {
     const $win = $(window);
     const $tabbar = $('.tabbar');
+    const $floatwrap = $('.floating-btns');
     let lastScrollTop = 0;
     const threshold = 5;
     const bottomOffset = 10;
@@ -295,12 +296,14 @@ let UI = {
 
       if (scrollTop <= 0) {
         $tabbar.removeClass('is-hidden');
+        $floatwrap.addClass('is-up');
         lastScrollTop = 0;
         return;
       }
 
       if (scrollTop >= maxScrollTop - bottomOffset) {
         $tabbar.addClass('is-hidden');
+        $floatwrap.removeClass('is-up');
         lastScrollTop = scrollTop;
         return;
       }
@@ -311,8 +314,10 @@ let UI = {
 
       if (scrollTop > lastScrollTop) {
         $tabbar.addClass('is-hidden');
+         $floatwrap.removeClass('is-up');
       } else {
         $tabbar.removeClass('is-hidden');
+        $floatwrap.addClass('is-up');
       }
 
       lastScrollTop = scrollTop;
@@ -935,6 +940,7 @@ let UI = {
   },
   goTop: function () {
     const $btn    = $('#goTop');
+    const $floatBtns = $('.floating-btns');
     const $aiChat = $('.ai-chat');
 
     if (!$btn.length) return;
@@ -959,8 +965,9 @@ let UI = {
     function handleScroll() {
       const scrollTop = $(window).scrollTop();
 
-      scrollTop > 200 ? showTopBtn() : hideTopBtn();
-      scrollTop <= 100 ? $aiChat.addClass('is-top') : $aiChat.removeClass('is-top');
+      scrollTop > 300 ? showTopBtn() : hideTopBtn();
+      scrollTop <= 200 ? $floatBtns.addClass('is-top') : $floatBtns.removeClass('is-top');
+      scrollTop <= 200 ? $aiChat.addClass('is-top') : $aiChat.removeClass('is-top');
     }
 
     handleScroll();
