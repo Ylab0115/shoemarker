@@ -11210,6 +11210,8 @@ img, video, canvas, svg {
     width: 100%;
     overflow-x: auto;
     gap: 0;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 }
 .header__util {
