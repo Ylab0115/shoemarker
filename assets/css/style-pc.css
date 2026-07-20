@@ -12170,7 +12170,19 @@ body.is-locked {
   height: 56px;
 }
 .mobile-gnb__depth1-item.utilmn {
-  height: 40px;
+  position: relative;
+  height: auto;
+  padding-top: 12px;
+}
+.mobile-gnb__depth1-item.utilmn::before {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  content: "";
+  width: calc(100% - 36px);
+  height: 1px;
+  background-color: #ccc;
 }
 .mobile-gnb__depth1-item.is-active .mobile-gnb__depth1-link {
   background: #FFFFFF;
