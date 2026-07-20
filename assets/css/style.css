@@ -27425,6 +27425,12 @@ main .ai-chat .ai-chat__trigger::before {
   padding-right: 24px;
   margin: 0 auto;
 }
+.page-storeinfor .store-finder .map {
+  display: block;
+}
+.page-storeinfor .store-finder .map__area {
+  height: 240px;
+}
 .page-storeinfor .store-finder .store-list {
   max-height: none;
 }
@@ -27437,6 +27443,9 @@ main .ai-chat .ai-chat__trigger::before {
   }
   .page-storeinfor .storeinfor-content {
     padding-top: 20px;
+  }
+  .page-storeinfor .store-finder .map__area {
+    height: 128px;
   }
 }
 
