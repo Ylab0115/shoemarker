@@ -12169,6 +12169,9 @@ body.is-locked {
 .mobile-gnb__depth1-item {
   height: 56px;
 }
+.mobile-gnb__depth1-item.utilmn {
+  height: 40px;
+}
 .mobile-gnb__depth1-item.is-active .mobile-gnb__depth1-link {
   background: #FFFFFF;
 }

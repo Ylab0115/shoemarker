@@ -11209,6 +11209,7 @@ img, video, canvas, svg {
   .header__nav {
     width: 100%;
     overflow-x: auto;
+    gap: 0;
   }
 }
 .header__util {
@@ -11549,7 +11550,7 @@ img, video, canvas, svg {
 @media (max-width: 1024px) {
   .nav {
     display: flex;
-    overflow-x: auto;
+    /*overflow-x: auto;*/
     -webkit-overflow-scrolling: touch;
     width: -moz-max-content;
     width: max-content;
@@ -11783,12 +11784,13 @@ img, video, canvas, svg {
 }
 @media (max-width: 1024px) {
   .nav--etc::before {
-    display: none;
+    /*display: none;*/
   }
 }
 @media (max-width: 1024px) {
   .nav--etc {
-    display: none;
+    padding-left: 0;
+    /*display: none;*/
   }
 }
 .nav--etc .nav__link {
@@ -12693,6 +12695,21 @@ body.is-locked {
 }
 .mobile-gnb__depth1-item {
   height: 56px;
+}
+.mobile-gnb__depth1-item.utilmn {
+  position: relative;
+  height: auto;
+  padding-top: 12px;
+}
+.mobile-gnb__depth1-item.utilmn::before {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  content: "";
+  width: calc(100% - 36px);
+  height: 1px;
+  background-color: #ccc;
 }
 .mobile-gnb__depth1-item.is-active .mobile-gnb__depth1-link {
   background: #FFFFFF;
@@ -23984,7 +24001,7 @@ main .ai-chat .ai-chat__trigger::before {
     flex-direction: row;
     flex-wrap: nowrap;
     padding: 0 24px 16px;
-    overflow-x: auto;
+    /*overflow-x: auto;*/
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: none;
     scrollbar-width: none;
