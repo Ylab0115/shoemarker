@@ -14078,6 +14078,9 @@ body.sheet-open {
 .tab__panels {
   padding: 24px;
 }
+.page-search .tab__panels {
+  padding: 0;
+}
 .tab__panel {
   display: none;
   flex-direction: column;
@@ -14088,6 +14091,15 @@ body.sheet-open {
 .tab--line .tab__list {
   padding: 0 24px;
   border-bottom: 1px solid #D8D8D8;
+}
+.page-search .tab--line .tab__list {
+  padding: 24px 0 0;
+}
+@media (max-width: 1024px) {
+  .page-search .tab--line .tab__list {
+    width: calc(100% - 48px);
+    margin: 0 auto;
+  }
 }
 .tab--line .tab__btn {
   padding: 10px 4px;
@@ -15389,8 +15401,9 @@ input[type=radio] {
   display: inline-flex;
   flex-direction: column;
   gap: 8px;
-  transition: transform .5s ease, bottom .5s ease;
+  transition: transform 0.5s ease, bottom 0.5s ease;
 }
+
 .home.mo .floating-btns.is-up:not(.is-top) {
   bottom: 98px;
 }
@@ -15399,66 +15412,20 @@ input[type=radio] {
   transform: translateY(100%);
 }
 
-.ai-chat.is-top .ai-chat__btn {
-  opacity: 1;
-  transform: translateX(0);
+main .ai-chat .ai-chat__trigger {
+  width: 136px;
+  border-radius: 40px;
+  padding: 7px 18px 7px 20px;
 }
-
-.ai-chat__trigger {
-  position: relative;
-  width: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 12px;
-  padding: 7px;
-  border-radius: 12px;
-  overflow: hidden;
-  white-space: nowrap;
-  transition: all .5s ease;
+main .ai-chat .ai-chat__trigger::before {
+  top: -50px;
+  left: -2px;
+  width: 140px;
+  height: 140px;
 }
-.ai-chat__trigger::before {
-  position: absolute;
-  top: -5px;
-  left: -5px;
-  display: block;
-  content: "";
-  width: 50px;
-  height: 50px;
-  z-index: -2;
-  background: conic-gradient(
-    #0D1A2D,
-    #0D1A2D,
-    #0C2D42,
-    #085B76,
-    #049CC0,
-    #00D4FF,
-    #2EC8F3,
-    #00B4D8,
-    #007DB4,
-    #005B94,
-    #05416B,
-    #0A2741,
-    #0D1A2D,
-    #0D1A2D
-  );
-  transition: all .5s ease;
-  animation: rotate 1.75s infinite linear;
+main .ai-chat .ai-chat__trigger::after {
+  border-radius: 36px;
 }
-.ai-chat__trigger::after {
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    display: block;
-    content: "";
-    border-radius: 10px;
-    width: calc(100% - 4px);
-    height: calc(100% - 4px);
-    background-color: #161B22;
-    z-index: -1;
-    transition: all .5s ease;
-}
-main .ai-chat .ai-chat__trigger,
 body.home.pc .ai-chat.is-top .ai-chat__trigger {
   width: 136px;
   border-radius: 40px;
@@ -15470,20 +15437,51 @@ body.home.pc .ai-chat.is-top .ai-chat__trigger::before {
   width: 140px;
   height: 140px;
 }
-main .ai-chat .ai-chat__trigger::after,
 body.home.pc .ai-chat.is-top .ai-chat__trigger::after {
   border-radius: 36px;
 }
-main .ai-chat .ai-chat__trigger::before {
-  top: -50px;
-  left: -2px;
-  width: 140px;
-  height: 140px;
+.ai-chat.is-top .ai-chat__btn {
+  opacity: 1;
+  transform: translateX(0);
 }
-@keyframes rotate {
-  100% {
-    transform: rotate(360deg);
-  }
+.ai-chat__trigger {
+  position: relative;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  padding: 7px;
+  border-radius: 12px;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: all 0.5s ease;
+}
+.ai-chat__trigger::before {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  display: block;
+  content: "";
+  width: 50px;
+  height: 50px;
+  z-index: -2;
+  background: conic-gradient(#0D1A2D, #0D1A2D, #0C2D42, #085B76, #049CC0, #00D4FF, #2EC8F3, #00B4D8, #007DB4, #005B94, #05416B, #0A2741, #0D1A2D, #0D1A2D);
+  transition: all 0.5s ease;
+  animation: rotate 1.75s infinite linear;
+}
+.ai-chat__trigger::after {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  display: block;
+  content: "";
+  border-radius: 10px;
+  width: calc(100% - 4px);
+  height: calc(100% - 4px);
+  background-color: #161B22;
+  z-index: -1;
+  transition: all 0.5s ease;
 }
 .ai-chat__trigger:hover .ai-chat__btn {
   opacity: 1;
@@ -15492,6 +15490,8 @@ main .ai-chat .ai-chat__trigger::before {
 .ai-chat__icon-wrap {
   min-width: 26px;
   height: 26px;
+  /*border-radius: 12px;
+  box-shadow: 0 3.373px 26.981px -3.373px rgba(99, 140, 243, 0.32);*/
 }
 .ai-chat__icon-wrap img {
   height: 100%;
@@ -15569,6 +15569,11 @@ main .ai-chat .ai-chat__trigger::before {
   animation-delay: 0.4s;
 }
 
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
 @keyframes arrow-wave {
   0%, 100% {
     opacity: 0.4;
@@ -16244,7 +16249,6 @@ main .ai-chat .ai-chat__trigger::before {
   top: 66%;
   transform: translateY(-66%);
   z-index: 1; */
-
   position: absolute;
   width: 1px;
   height: 1px;
@@ -17176,16 +17180,16 @@ main .ai-chat .ai-chat__trigger::before {
   justify-content: space-between;
   padding: 10px 20px;
   border-radius: 6px;
-  background: #e0e0e0;
-}
-.order-group__divider {
-  border-top: 1px dashed #ccc;
+  background: #E0E0E0;
 }
 @media (max-width: 1024px) {
   .order-group__head {
     padding: 8px 16px;
     border-radius: 0;
   }
+}
+.order-group__divider {
+  border-top: 1px dashed #CCCCCC;
 }
 .order-group__status {
   color: #2D2D2D;
@@ -18519,9 +18523,6 @@ main .ai-chat .ai-chat__trigger::before {
   display: flex;
   gap: 4px;
 }
-.order-block__search .form__field {
-  flex:1;
-}
 @media (max-width: 640px) {
   .order-block__search {
     flex-direction: column;
@@ -18529,6 +18530,9 @@ main .ai-chat .ai-chat__trigger::before {
   .order-block__search button {
     width: 100%;
   }
+}
+.order-block__search .form__field {
+  flex: 1;
 }
 
 .store-finder {
@@ -19591,19 +19595,19 @@ main .ai-chat .ai-chat__trigger::before {
     letter-spacing: 0;
   }
 }
-.delivery-address .delivery-list__btns {
-  display: flex;
-  gap: 4px;
-}
-.delivery-address .delivery-list__btns button {
-  flex:1;
-}
 .delivery-address .delivery-list__label {
   flex-shrink: 0;
 }
 .delivery-address .delivery-list__label::after {
   content: ":";
   padding-left: 4px;
+}
+.delivery-address .delivery-list__btns {
+  display: flex;
+  gap: 4px;
+}
+.delivery-address .delivery-list__btns button {
+  flex: 1;
 }
 
 @media (max-width: 1024px) {
@@ -19963,7 +19967,7 @@ main .ai-chat .ai-chat__trigger::before {
   }
 }
 .prod-edit-list__btns .btn--md {
-  /*width: 75px;*/
+  /* width: 75px; */
   border-radius: 2px;
   font-size: 13px;
   font-weight: 400;
@@ -21842,9 +21846,6 @@ main .ai-chat .ai-chat__trigger::before {
   height: 100%;
   border: 1px solid #FFFFFF;
 }
-.product-detail .prod-summary .prod-visual .swiper-slide-thumb-active .thumb-swiper__btn::after {
-  border-color: #2D2D2D;
-}
 .product-detail .prod-summary .prod-visual .thumb-swiper__btn img {
   display: block;
   width: 100%;
@@ -21852,6 +21853,7 @@ main .ai-chat .ai-chat__trigger::before {
   -o-object-fit: cover;
      object-fit: cover;
 }
+.product-detail .prod-summary .prod-visual .thumb-swiper .swiper-slide-thumb-active .thumb-swiper__btn::after,
 .product-detail .prod-summary .prod-visual .thumb-swiper .swiper-slide-thumb-active .prod-visual__thumb-btn::after {
   border-color: #2D2D2D;
 }
@@ -23503,6 +23505,16 @@ main .ai-chat .ai-chat__trigger::before {
   opacity: 1;
 }
 
+.page-product .brand {
+  margin-bottom: 60px;
+}
+@media (max-width: 1024px) {
+  .page-product .brand {
+    padding-top: 45px;
+    margin-bottom: 0;
+    overflow: hidden;
+  }
+}
 .brand__title {
   color: #2D2D2D;
   font-size: 24px;
@@ -23527,6 +23539,10 @@ main .ai-chat .ai-chat__trigger::before {
          column-gap: 12px;
     row-gap: 24px;
   }
+}
+.page-product .brand__list {
+  display: flex;
+  gap: 0;
 }
 .brand .brand-banner {
   position: relative;
@@ -23604,6 +23620,12 @@ main .ai-chat .ai-chat__trigger::before {
 @media (max-width: 1024px) {
   .brand .brand-best {
     padding: 32px 24px;
+  }
+  .page-product .brand .brand-best {
+    position: relative;
+  }
+  .page-product .brand .brand-best .swiper-pagination-bullet-active {
+    background: #2D2D2D;
   }
 }
 .brand .brand-styling {
@@ -24004,7 +24026,7 @@ main .ai-chat .ai-chat__trigger::before {
     flex-wrap: nowrap;
     padding: 0 24px 16px;
     overflow-x: auto;
-    /*-webkit-overflow-scrolling: touch; 2026-07-20 사파리 브라우저 문제로 삭제 */
+    /* -webkit-overflow-scrolling: touch; 2026-07-20 사파리 브라우저 문제로 삭제 */
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
@@ -24404,6 +24426,12 @@ main .ai-chat .ai-chat__trigger::before {
   font-weight: 500;
   line-height: 20px;
 }
+.order-form .delivery-message .textarea {
+  margin-top: 4px;
+}
+.order-form .delivery-message .textarea .textarea__field {
+  min-height: 74px;
+}
 .order-form .discount-benefit {
   display: flex;
   align-items: center;
@@ -24432,12 +24460,6 @@ main .ai-chat .ai-chat__trigger::before {
 .order-form .discount-benefit__unit {
   font-size: 14px;
   line-height: 20px;
-}
-.order-form .delivery-message .textarea {
-  margin-top: 4px;
-}
-.order-form .delivery-message .textarea .textarea__field {
-  min-height: 74px;
 }
 .order-form .payment__item:last-child {
   padding-bottom: 0;
@@ -24523,33 +24545,46 @@ main .ai-chat .ai-chat__trigger::before {
   display: inline-block;
   width: 100%;
   height: 30px;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: contain;
 }
 .order-form .payment-method__quick-icon--npay {
-  background-image: url("../images/img_npay.png");
+  background: url("../images/img_npay.png") no-repeat;
+  background-size: center center;
+  background-size: contain;
 }
 .order-form .payment-method__quick-icon--kakaopay {
-  background-image: url("../images/img_kakaopay.png");
+  background: url("../images/img_kakaopay.png") no-repeat;
+  background-size: center center;
+  background-size: contain;
 }
 .order-form .payment-method__quick-icon--payco {
-  background-image: url("../images/img_payco.png");
+  background: url("../images/img_payco.png") no-repeat;
+  background-size: center center;
+  background-size: contain;
 }
 .order-form .payment-method__quick-icon--toss {
-  background-image: url("../images/img_toss.png");
+  background: url("../images/img_toss.png") no-repeat;
+  background-size: center center;
+  background-size: contain;
 }
 .order-form .payment-method__quick-icon--applepay {
-  background-image: url("../images/img_applepay.png");
+  background: url("../images/img_applepay.png") no-repeat;
+  background-size: center center;
+  background-size: contain;
 }
 .order-form .payment-method__quick-icon--samsung {
-  background-image: url("../images/img_samsung.png");
+  background: url("../images/img_samsung.png") no-repeat;
+  background-size: center center;
+  background-size: contain;
 }
 .order-form .payment-method__quick-icon--lpay {
-  background-image: url("../images/img_lpay.png");
+  background: url("../images/img_lpay.png") no-repeat;
+  background-size: center center;
+  background-size: contain;
 }
 .order-form .payment-method__quick-icon--shoemarkerpay {
-  background-image: url("../images/img_shoemarker_pay.png");
+  background: url("../images/img_shoemarker_pay.png") no-repeat;
+  background-size: center center;
+  background-size: contain;
 }
 .order-form .payment-method__guide-link {
   margin-top: 8px;
@@ -26442,6 +26477,81 @@ main .ai-chat .ai-chat__trigger::before {
   }
 }
 
+.page-storeinfor .section__inner {
+  width: 100%;
+  max-width: 688px;
+  padding-left: 24px;
+  padding-right: 24px;
+  margin: 0 auto;
+}
+@media (max-width: 1024px) {
+  .page-storeinfor .section__inner {
+    padding-bottom: calc(78px + env(safe-area-inset-bottom));
+  }
+  .page-storeinfor .section__inner .storeinfor-content {
+    padding-top: 20px;
+  }
+  .page-storeinfor .section__inner .store-finder .map__area {
+    height: 128px;
+  }
+}
+.page-storeinfor .store-finder .map {
+  display: block;
+}
+.page-storeinfor .store-finder .map__area {
+  height: 240px;
+}
+.page-storeinfor .store-finder .store-list {
+  max-height: none;
+}
+.page-storeinfor .cta {
+  margin-top: 32px;
+}
+
+.page-benefitinfor .section__inner {
+  width: 100%;
+  max-width: 688px;
+  padding-left: 24px;
+  padding-right: 24px;
+  margin: 0 auto;
+}
+@media (max-width: 1024px) {
+  .page-benefitinfor .section__inner {
+    padding-bottom: calc(78px + env(safe-area-inset-bottom));
+  }
+}
+.page-benefitinfor.membership .benefit {
+  gap: 24px 10px;
+}
+.page-benefitinfor.membership .notice {
+  margin-top: 24px;
+}
+.page-benefitinfor.membership .benefit__cate {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 40px 24px;
+}
+.page-benefitinfor.membership .cate__item {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.page-benefitinfor.membership .benefit__tab .tab--fill {
+  display: flex;
+  gap: 4px;
+  padding-bottom: 8px;
+}
+@media (max-width: 1024px) {
+  .page-benefitinfor.membership {
+    padding: 0;
+  }
+}
+@media (max-width: 1024px) {
+  .page-benefitinfor .benefitinfor-content {
+    padding-top: 20px;
+  }
+}
+
 .page-launch .section__header {
   display: none;
 }
@@ -26750,7 +26860,7 @@ main .ai-chat .ai-chat__trigger::before {
 }
 @media (max-width: 1024px) {
   .launch .launch-content .launch-card__thumb {
-    /*aspect-ratio: 342/208;*/
+    /* aspect-ratio: 342 / 208; */
     border-radius: 6px;
   }
 }
@@ -27374,8 +27484,8 @@ main .ai-chat .ai-chat__trigger::before {
 }
 @media (max-width: 1024px) {
   .search .search-prod .brand-detail .brand-content__header {
-    padding-bottom: 8px;
-    border-bottom: 1px solid #D8D8D8;
+    /* padding-bottom: 8px;
+    border-bottom: 1px solid $gray-30; */
   }
 }
 @media (max-width: 1024px) {
@@ -27435,75 +27545,4 @@ main .ai-chat .ai-chat__trigger::before {
   gap: 32px;
   max-width: 640px;
   margin: 0 auto;
-}
-
-.page-storeinfor .section__inner {
-  width: 100%;
-  max-width: 688px;
-  padding-left: 24px;
-  padding-right: 24px;
-  margin: 0 auto;
-}
-.page-storeinfor .store-finder .map {
-  display: block;
-}
-.page-storeinfor .store-finder .map__area {
-  height: 240px;
-}
-.page-storeinfor .store-finder .store-list {
-  max-height: none;
-}
-.page-storeinfor .cta {
-  margin-top: 32px;
-}
-@media (max-width: 1024px) {
-  .page-storeinfor .section__inner {
-    padding-bottom: calc(78px + env(safe-area-inset-bottom));
-  }
-  .page-storeinfor .storeinfor-content {
-    padding-top: 20px;
-  }
-  .page-storeinfor .store-finder .map__area {
-    height: 128px;
-  }
-}
-
-.page-benefitinfor .section__inner {
-  width: 100%;
-  max-width: 688px;
-  padding-left: 24px;
-  padding-right: 24px;
-  margin: 0 auto;
-}
-.page-benefitinfor.membership .benefit {
-  gap: 24px 10px;
-}
-.page-benefitinfor.membership .notice {
-  margin-top: 24px;
-}
-.page-benefitinfor.membership .benefit__cate {
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: 40px 24px;
-}
-.page-benefitinfor.membership .cate__item {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.page-benefitinfor.membership .benefit__tab .tab--fill {
-  display: flex;
-  gap: 4px;
-  padding-bottom: 8px;
-}
-@media (max-width: 1024px) {
-  .page-benefitinfor.membership {
-    padding: 0;
-  }
-  .page-benefitinfor .section__inner {
-    padding-bottom: calc(78px + env(safe-area-inset-bottom));
-  }
-  .page-benefitinfor .benefitinfor-content {
-    padding-top: 20px;
-  }
 }
