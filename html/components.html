@@ -493,6 +493,38 @@
                 <input type="checkbox" id="check4" class="checkbox__input"/>
                 <label for="check4" class="checkbox__label checkbox__label--hide">자동 로그인</label>
               </div>
+              <h3 class="guide__subtitle">button type</h3>
+              <div class="checkbox">
+                <input type="checkbox" id="check-btn01" class="checkbox__input button"/>
+                <label for="check-btn01" class="checkbox__label checkbox__label--button btn btn--line btn--secondary btn--md">체크 1</label>
+              </div>
+              <h3 class="guide__subtitle">button type + disabled</h3>
+              <div class="checkbox">
+                <input type="checkbox" id="check-btn02" class="checkbox__input button" disabled/>
+                <label for="check-btn02" class="checkbox__label checkbox__label--button btn btn--line btn--secondary btn--md">체크 1</label>
+              </div>
+              <h3 class="guide__subtitle">button type</h3>
+              <div class="checkbox">
+                <input type="checkbox" id="check-btn03-1" class="checkbox__input color"/>
+                <label for="check-btn03-1" class="checkbox__label checkbox__label--color" style="--status-color:#000000;">블랙</label>
+              </div>
+              <div class="checkbox">
+                <input type="checkbox" id="check-btn03-2" class="checkbox__input color"/>
+                <label for="check-btn03-2" class="checkbox__label checkbox__label--color" style="--status-color:#FFFFFF;">화이트</label>
+              </div>
+              <div class="checkbox">
+                <input type="checkbox" id="check-btn03-3" class="checkbox__input color" checked/>
+                <label for="check-btn03-3" class="checkbox__label checkbox__label--color" style="--status-color:#FFFFFF;">화이트</label>
+              </div>
+              <h3 class="guide__subtitle">button type + disabled</h3>
+              <div class="checkbox">
+                <input type="checkbox" id="check-btn04-1" class="checkbox__input color" disabled/>
+                <label for="check-btn04-1" class="checkbox__label checkbox__label--color" style="--status-color:#000000;">블랙</label>
+              </div>
+              <div class="checkbox">
+                <input type="checkbox" id="check-btn04-2" class="checkbox__input color" disabled/>
+                <label for="check-btn04-2" class="checkbox__label checkbox__label--color" style="--status-color:#FFFFFF;">화이트</label>
+              </div>
             </div>
 
             <h2 class="guide__title">Form Radio</h2>
@@ -627,6 +659,39 @@
                 <div class="radio-btn radio-btn--tag">
                   <input type="radio" id="radio-btnst06-5" name="radioSet-btnst06" class="radio-btn__input" />
                   <label for="radio-btnst06-5" class="radio-btn__label">라인핏</label>
+                </div>
+              </div>
+            </div>
+
+            <h2 class="guide__title">Range</h2>
+            <div class="guide__box">
+              <div class="price-range-filter">
+                <div class="price-input-container">
+                  <div class="input-group">
+                    <div class="input-wrapper">
+                      <input type="text" class="min-input form__input" value="0">
+                      <span>원</span>
+                    </div>
+                  </div>
+                  <span class="separator">~</span>
+                  <div class="input-group">
+                    <div class="input-wrapper">
+                      <input type="text" class="max-input form__input" value="200,000">
+                      <span>원</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="slider-container">
+                  <div class="slider-track" id="slider-track"></div>
+                  <div class="range-input">
+                    <input type="range" class="min-range" min="0" max="200000" value="0" step="1000">
+                    <input type="range" class="max-range" min="0" max="200000" value="200000" step="1000">
+                  </div>
+                </div>
+                <div class="preset-buttons">
+                  <button class="btn btn--line btn--secondary btn--md btn-set-price" data-min="0" data-max="50000">0~5만 원</button>
+                  <button class="btn btn--line btn--secondary btn--md btn-set-price" data-min="50000" data-max="100000">5만~10만 원</button>
+                  <button class="btn btn--line btn--secondary btn--md btn-set-price" data-min="100000" data-max="200000">10만~20만 원</button>
                 </div>
               </div>
             </div>

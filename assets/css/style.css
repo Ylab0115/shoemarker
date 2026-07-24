@@ -11900,6 +11900,24 @@ img, video, canvas, svg {
   gap: 16px;
   margin-top: 18px;
 }
+.footer__toss {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 12px;
+  margin-top: 18px;
+}
+.footer__toss p {
+  color: #717171;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 150%;
+}
+.footer__toss p u, .footer__toss p a {
+  color: #2D2D2D;
+  font-weight: 600;
+  text-decoration: underline;
+}
 .footer__logo-img {
   width: 129px;
   height: 46.3px;
@@ -11979,8 +11997,33 @@ img, video, canvas, svg {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 40px;
 }
 .footer__info-right {
+  display: inline-flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 24px;
+}
+.footer__info-right .toss-wrap {
+  display: inline-flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.footer__info-right .toss-wrap p {
+  color: #B7B7B7;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 150%;
+  max-width: 248px;
+}
+.footer__info-right .toss-wrap p u, .footer__info-right .toss-wrap p a {
+  color: #FFFFFF;
+  font-weight: 600;
+  text-decoration: underline;
+}
+.footer__info-right .infor-wrap {
   text-align: right;
 }
 .footer__text {
@@ -13127,6 +13170,12 @@ body.sheet-open {
 .bottom-sheet__section + .bottom-sheet__section {
   margin-top: 16px;
 }
+.bottom-sheet__total {
+  padding: 0 24px;
+}
+.bottom-sheet__total .total {
+  padding: 4px 0;
+}
 .bottom-sheet__footer {
   display: flex;
   padding: 8px 16px;
@@ -14088,6 +14137,46 @@ body.sheet-open {
 .tab__panel.is-active {
   display: flex;
 }
+.tab__panel .style-button .checkbox,
+.tab__panel .style-button .checkbox__label {
+  width: 100%;
+}
+.tab__panel .style-color .brand-filter__item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 auto;
+}
+.tab__panel .style-color .checkbox__label {
+  font-size: 12px;
+  display: block !important;
+  max-width: 72px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+@media (max-width: 414px) {
+  .tab__panel .style-color .checkbox__label {
+    max-width: 64px;
+  }
+}
+@media (max-width: 375px) {
+  .tab__panel .style-color .checkbox__label {
+    max-width: 54px;
+  }
+}
+@media (max-width: 320px) {
+  .tab__panel .style-color .checkbox__label {
+    max-width: 40px;
+  }
+}
+.tab__panel .style-color .checkbox__label--color::before {
+  margin: 0 auto;
+  border-radius: 50%;
+  background: var(--status-color);
+  border: 1px solid #E0E0E0;
+  margin-bottom: 4px;
+}
 .tab--line .tab__list {
   padding: 0 24px;
   border-bottom: 1px solid #D8D8D8;
@@ -14778,6 +14867,55 @@ input[type=checkbox] {
 .checkbox__input:disabled + .checkbox__label::before {
   background: url("../images/icon_checkbox_disabled.svg") no-repeat;
 }
+.checkbox__input.button:checked + .checkbox__label {
+  font-weight: 600;
+  border-color: #1A1A1A;
+}
+.checkbox__input.button:disabled {
+  cursor: default;
+}
+.checkbox__input.button:disabled + .checkbox__label {
+  cursor: default;
+  color: #717171;
+  background-color: #F5F5F5;
+}
+.checkbox__input.color + .checkbox__label {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.checkbox__input.color:checked + .checkbox__label {
+  font-weight: 600;
+  border-color: #1A1A1A;
+}
+.checkbox__input.color:checked + .checkbox__label::before {
+  background: var(--status-color) url("../images/icon_checkbox_checked_transparent.svg") no-repeat;
+  background-position: center center;
+  background-size: 24px 24px;
+}
+.checkbox__input.color:disabled {
+  cursor: default;
+}
+.checkbox__input.color:disabled + .checkbox__label {
+  cursor: default;
+  color: #717171;
+}
+.checkbox__input.color:disabled + .checkbox__label::before {
+  background: var(--status-color);
+}
+.checkbox__input.color:disabled + .checkbox__label::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 24px;
+  height: 24px;
+  background: url("../images/icon_checkbox_checked_disabled.svg") no-repeat;
+  background-position: center center;
+  background-size: 24px 24px;
+}
 .checkbox__label {
   display: inline-flex;
   align-items: center;
@@ -14804,6 +14942,16 @@ input[type=checkbox] {
 }
 .checkbox__label--hide::before {
   margin: 0;
+}
+.checkbox__label--button::before {
+  content: none;
+}
+.checkbox__label--color::before {
+  margin: 0 auto;
+  border-radius: 50%;
+  background: var(--status-color);
+  border: 1px solid #E0E0E0;
+  margin-bottom: 4px;
 }
 
 input[type=radio] {
@@ -15008,6 +15156,113 @@ input[type=radio] {
 }
 .radio-group--scroll::-webkit-scrollbar {
   display: none;
+}
+
+.price-range-filter .price-input-container { /* 입력 박스 스타일 */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.price-range-filter .price-input-container .separator {
+  font-weight: 800;
+}
+.price-range-filter .price-input-container .input-group {
+  display: flex;
+  flex-direction: column;
+  width: calc(50% - 10px);
+}
+.price-range-filter .price-input-container .input-group label {
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+.price-range-filter .price-input-container .input-group .input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.price-range-filter .price-input-container .input-group .input-wrapper input {
+  padding-right: 24px;
+  border: none;
+  background: #F5F5F5;
+  /* input type=number의 스핀 버튼 제거 */
+}
+.price-range-filter .price-input-container .input-group .input-wrapper input::-webkit-outer-spin-button, .price-range-filter .price-input-container .input-group .input-wrapper input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.price-range-filter .price-input-container .input-group .input-wrapper span {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+}
+.price-range-filter .slider-container { /* 슬라이더 스타일 */
+  position: relative;
+  height: 6px;
+  background: #E4E4E4;
+  border-radius: 3px;
+  margin: 24px 10px;
+}
+.price-range-filter .slider-container .slider-track {
+  position: absolute;
+  height: 100%;
+  background-color: #1D1D1D;
+  border-radius: 3px;
+}
+.price-range-filter .slider-container .range-input {
+  position: relative;
+}
+.price-range-filter .slider-container .range-input input {
+  position: absolute;
+  top: 0px;
+  height: 6px;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  background: none;
+  pointer-events: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+.price-range-filter .slider-container .range-input input.min {
+  left: 0;
+}
+.price-range-filter .slider-container .range-input input.max {
+  right: 0;
+}
+.price-range-filter .slider-container .range-input input {
+  /* 슬라이더 손잡이(Thumb) 스타일 */
+}
+.price-range-filter .slider-container .range-input input::-webkit-slider-thumb {
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 2px solid #1D1D1D;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  pointer-events: auto;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+.price-range-filter .slider-container .range-input input::-moz-range-thumb {
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 2px solid #1D1D1D;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  pointer-events: auto;
+  -moz-appearance: none;
+  cursor: pointer;
+}
+.price-range-filter .preset-buttons { /* 버튼 스타일 */
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+.price-range-filter .preset-buttons button {
+  width: 100%;
 }
 
 .select {
@@ -15456,6 +15711,7 @@ body.home.pc .ai-chat.is-top .ai-chat__trigger::after {
   overflow: hidden;
   white-space: nowrap;
   transition: all 0.5s ease;
+  box-shadow: 0px 0px 20px 0px rgba(0, 180, 255, 0.12), 0px 4px 10px 0px rgba(0, 212, 255, 0.08);
 }
 .ai-chat__trigger::before {
   position: absolute;
@@ -23991,6 +24247,14 @@ body.home.pc .ai-chat.is-top .ai-chat__trigger::after {
 .brand-detail .brand-filter__sub-list {
   margin-bottom: 10px;
 }
+.brand-detail .brand-filter__sub-list.grid-col2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.brand-detail .brand-filter__sub-list.grid-col3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
 .brand-detail .brand-filter__sub-list.grid-col4 {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -24006,6 +24270,46 @@ body.home.pc .ai-chat.is-top .ai-chat__trigger::after {
   font-size: 14px;
   line-height: 140%;
   letter-spacing: -0.14px;
+}
+.brand-detail .brand-filter__sub.style-button .brand-filter__sub-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  padding-top: 10px;
+  margin-bottom: 20px;
+}
+.brand-detail .brand-filter__sub.style-button .brand-filter__sub-list .brand-filter__sub-item,
+.brand-detail .brand-filter__sub.style-button .brand-filter__sub-list .checkbox,
+.brand-detail .brand-filter__sub.style-button .brand-filter__sub-list label {
+  width: 100%;
+  padding: 0;
+}
+.brand-detail .brand-filter__sub.style-button .brand-filter__sub-list label {
+  display: block;
+  max-width: 134px;
+  padding: 0 10px;
+  line-height: 33px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.brand-detail .brand-filter__sub.style-color .brand-filter__sub-list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  place-items: center;
+  gap: 8px 0;
+}
+.brand-detail .brand-filter__sub.style-color .brand-filter__sub-list .checkbox__label {
+  font-size: 12px;
+  /*line-height: 100%;
+  text-align: center;
+  white-space: normal;
+  word-break: keep-all;*/
+  display: block;
+  max-width: 48.8px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .brand-detail .brand-filter .category__title {
   padding-bottom: 28px;
@@ -24278,6 +24582,22 @@ body.home.pc .ai-chat.is-top .ai-chat__trigger::after {
   display: flex;
   flex-direction: column;
   gap: 12px;
+}
+#brandFilterSheet .brand-filter__list.grid-col2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+#brandFilterSheet .brand-filter__list.grid-col3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+#brandFilterSheet .brand-filter__list.grid-col4 {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+#brandFilterSheet .brand-filter__list.grid-col5 {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 #brandFilterSheet .filter-tags {
   margin-top: 12px;

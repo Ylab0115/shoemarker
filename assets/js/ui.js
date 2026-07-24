@@ -1063,9 +1063,98 @@ let UI = {
     $(window).on('scroll', closeAll);
     $scrollArea.on('scroll', closeAll);
   },
+  // 가격 Range : 가격 범위 필터 초기화 함수
+  initPriceRange: function (container) {
+    if (!container) return;
+    const els = {
+      container,
+      minRange: container.querySelector('.min-range'),
+      maxRange: container.querySelector('.max-range'),
+      minInput: container.querySelector('.min-input'),
+      maxInput: container.querySelector('.max-input'),
+      sliderTrack: container.querySelector('.slider-track')
+    };
+    const { minRange, maxRange, minInput, maxInput, sliderTrack } = els;
+    if (!minRange || !maxRange || !minInput || !maxInput) return;
+    const formatNumber = (num) => Number(num).toLocaleString();
+    const parseNumber = (str) => {
+      if (typeof str === 'number') return str;
+      return parseInt(String(str).replace(/,/g, ''), 10) || 0;
+    };
+    const updateTrack = () => {
+      if (!sliderTrack) return;
+      const maxLimit = Number(maxRange.max) || 100;
+      const minLimit = Number(minRange.min) || 0;
+      const range = maxLimit - minLimit;
+
+      const left = ((Number(minRange.value) - minLimit) / range) * 100;
+      const right = ((Number(maxRange.value) - minLimit) / range) * 100;
+
+      sliderTrack.style.left = left + "%";
+      sliderTrack.style.width = (right - left) + "%";
+    };
+    const setPriceRange = (min, max) => {
+      minRange.value = min;
+      maxRange.value = max;
+      minInput.value = formatNumber(min);
+      maxInput.value = formatNumber(max);
+      updateTrack();
+    };
+    const onMinRange = () => {
+      if (Number(minRange.value) > Number(maxRange.value)) {
+        minRange.value = maxRange.value;
+      }
+      minInput.value = formatNumber(minRange.value);
+      updateTrack();
+    };
+    const onMaxRange = () => {
+      if (Number(maxRange.value) < Number(minRange.value)) {
+        maxRange.value = minRange.value;
+      }
+      maxInput.value = formatNumber(maxRange.value);
+      updateTrack();
+    };
+    const onMinInput = () => {
+      let val = parseNumber(minInput.value);
+      let max = Number(maxRange.value);
+      let minLimit = Number(minRange.min) || 0;
+
+      val = Math.max(minLimit, Math.min(val, max));
+      minRange.value = val;
+      minInput.value = formatNumber(val);
+      updateTrack();
+    };
+    const onMaxInput = () => {
+      let val = parseNumber(maxInput.value);
+      let min = Number(minRange.value);
+      let maxLimit = Number(maxRange.max);
+      val = Math.min(maxLimit, Math.max(val, min));
+      maxRange.value = val;
+      maxInput.value = formatNumber(val);
+      updateTrack();
+    };
+
+    minRange.addEventListener('input', onMinRange);
+    maxRange.addEventListener('input', onMaxRange);
+    minInput.addEventListener('change', onMinInput);
+    maxInput.addEventListener('change', onMaxInput);
+
+    const setBtns = container.querySelectorAll('.btn-set-price');
+    setBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const min = Number(e.currentTarget.dataset.min);
+        const max = Number(e.currentTarget.dataset.max);
+        setPriceRange(min, max);
+      });
+    });
+
+    minInput.value = formatNumber(minRange.value);
+    maxInput.value = formatNumber(maxRange.value);
+    updateTrack();
+  },
 };
 
-
+// 초기화 실행
 $(function () {
   UI.alert();
   UI.modal();
@@ -1095,6 +1184,10 @@ $(function () {
   UI.goTop();
   UI.headerSearch();
   UI.categorySelect();
+  UI.initPriceRange();
+  document.querySelectorAll('.price-range-filter').forEach(container => {
+    UI.initPriceRange(container);
+  });
 });
 
 // resize 대응
